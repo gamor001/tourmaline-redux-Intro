@@ -4,10 +4,42 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//redux
+import { createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux'
+
+// old way | let [count, setCount] = useState(0) //local to component
+
+//reducer //global for application
+const count = (state = 0, action) => {
+  console.log('Hey im a reducer' , state);
+  return state
+}
+
+
+const elementList = (state = [], action) => {
+  return state
+}
+
+//store
+const storeInstance = createStore(
+
+  combineReducers(
+    {
+  count,
+  elementList
+    }
+  )
+);
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={storeInstance}>
     <App />
+    </Provider>
   </React.StrictMode>
 );
 
