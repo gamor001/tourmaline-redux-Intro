@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import {useSelector, useDispatch} from 'react-redux'
 
+
 function App() {
 
     //useSelector accepts a function that tells it what part of the store you want.
@@ -24,6 +25,10 @@ function App() {
       <button onClick={() => dispatch({type: 'INCREASE'})}>Increase</button>
 
       <button onClick={() => dispatch({type: 'DECREASE'})}>Decrease</button>
+
+      <button onClick={() => dispatch({type: 'ADD_ELEMENT', payload: 'hydrogen'})}>Add Element </button>
+
+      
 
       {/* rendering the count */}
       <p>Count is: {count}</p>

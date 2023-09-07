@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
 //redux
-import { createStore, combineReducers} from 'redux';
+import { createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux'
+import logger from 'redux-logger'
 
 // old way | let [count, setCount] = useState(0) //local to component
 
@@ -29,6 +31,12 @@ const count = (state = 0, action) => {
 
 
 const elementList = (state = [], action) => {
+  if(action.type === 'ADD_ELEMENT'){
+    console.log(`The element wes ${action.payload}`);
+    //[old array contents, new item]
+   return[...state, action.payload]
+    
+  }
   return state
 }
 
@@ -40,6 +48,9 @@ const storeInstance = createStore(
   count,
   elementList
     }
+  ),
+  applyMiddleware(
+    logger
   )
 );
 
